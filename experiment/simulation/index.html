@@ -1,13 +1,569 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-	<!-- Add CSS at the head of HTML file -->
-    <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-		<!-- Your code goes here-->
+<meta charset="UTF-8">
+<title>SOLVE</title>
+<script type="text/javascript" src= "js/canvasjs.min.js"></script><!--for graph-->
+<script type="text/javascript" src= "js/jquery-2.1.4.js"></script>
+<script type="text/javascript" src= "js/ej.web.all.js"></script>
+<script type="text/javascript" src="js/jquerymin.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!--same-->
+<link rel="stylesheet" href="css/jartest.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jartest.js"></script>
+<script>
+var simsubscreennum=0;
+var temp=0;
+function display()
+{
+	document.getElementById("nextButton").style.visibility="visible";
+	document.getElementById("1-15").style.visibility="visible";
+	document.getElementById("1-1").style.visibility="hidden";
+	document.getElementById("1-4").style.visibility="hidden";
+	document.getElementById("1-5").style.visibility="hidden";
+	document.getElementById("1-6").style.visibility="hidden";
+	document.getElementById("popups1").style.visibility="hidden";
+}
 
-	<!-- Add JS at the bottom of HTML file --> 
-        <script src="./js/main.js"></script>
+</script>
+<style>
+.popup
+{
+	border-radius:5px;
+	background-color:black;
+	color:white;
+	padding:5px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 400px;
+  background-color: black;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 10px 10px 10px 10px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 100;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#popups1
+{
+	border:1px dotted black;
+	padding:5px;
+	border-radius:3px;
+	 background-color:black;
+	 color:white;
+}
+
+table,td
+{
+	text-align:center;
+	border:1px solid black;
+}
+td
+{
+ padding:10px;
+}
+</style>
+</head>
+
+<body style="margin:0; font-family:verdana; font-size:14px;">
+<div id="simscreen">
+<div id="title"><h3>Alum Coagulation</h3></div>
+
+<div class="simsubscreen" id="canvas0" >
+<h4 class="incanvas">Objective:</h4>
+<p class="incanvas" style="font-size:14px;">To determine the optimum Alum dosage for water or waste water treatment by Jar test.</p><br/>
+<h4 class="incanvas">Apparatus used:</h4>
+<p class="incanvas" style="font-size:14px;">Nephelometer, Nephelometer tube, Pipette, Beaker, Stirrer and Measuring cylinder etc.</p></br>
+
+<span class="tooltip" style="border-bottom:1px dotted; position:absolute; left:5px; top:130px; text-align:justify; "><strong>Solutions used</strong>
+<span  class="tooltiptext" style="text-align:justify;">Water samples, Alum solution (Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub>18H<sub>2</sub>O)</span>
+</span>
+<span class="tooltip" style="border-bottom:1px dotted ; color:red; position:absolute; left:175px; top:130px; text-align:justify; "><strong>Description</strong>
+<span  class="tooltiptext" style="text-align:justify;"><strong style="color:red;">Coagulation</strong> is the process of addition of a chemical to de-stabilize a stabilized charged particle.</br></br><strong><span style="color:red;">Flocculation</span></strong> is a slow mixing technique which promotes agglomeration and helps the particles to settle down.</span>
+</span>
+
+<img style="position:absolute; left:170px; top:360px;" title="Table" src="images/table.png" />
+<img style="position:absolute; left:10px; top:180px;" title="" src="images/human.png" />
+<img style="position:absolute; left:200px; top:267.5px; width:112.49px;" src="images/Nephelometer2.png" alt="nephelometer" title="Nephelometer" />
+<img style="position:absolute; left:200px; top:283.5px; width:115px;" src="images/Nephelometer.png" alt="nephelometer" title="Nephelometer"/>
+<img style="position:absolute; left:286px; top:260px; width:22px; " src="images/stopper1.png" alt="" title="Nephelometer" />
+<img style="position:absolute; left:345px; top:320px; width:50px;" title="Beaker" src="images/1-2.png" />
+<img style="position:absolute; left:400px; top:170px; width:285px;" title="Magnetic stirrer" src="images/1.png" />
+<div style="position:absolute; left:325.5px; top:345px; background-color:#FFFFFF; width:17.5px; height:20px;"></div>
+<img style="position:absolute; left:325.5px; top:335.5px; width:17px; " src="images/nt2.png"  title="Nephelometer tube" />
+<img style="position:absolute; left:325.5px; top:335.5px; width:17px;" src="images/nt1.png"  title="Nephelometer tube" />
+<img style="position:absolute; left:324.5px; top:334.5px; width:20px;"  title="Nephelometer tube" src="images/cap1.png" />
+
+</div>
+
+<div class="simsubscreen" id="canvas1" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;1&nbsp;</span>
+<p class="steptext">&nbsp;Take 500ml of water sample in six beakers using measuring cylinder.</p>
+<div id="1-10b" style="position:absolute; left:330px; top:280px; background-color:#F2F2F2; width:57.5px; height:140px;" ></div>
+<div id="1-10a" style="position:absolute; left:330px; top:280px; background-color:white; width:57.5px; height:140px;" ></div>
+<div id="1-10c" style="position:absolute; left:360px; top:235px; background-color:#F2F2F2; width:5px; height:35px; display:none;" ></div>
+<img id="1-10d" style="position:absolute; left:100px; top:322.5px; visibility:hidden;" src="images/water1.png"  />
+<img id="1-9" style="position:absolute; left:300px; top:242.5px; cursor:pointer; width:100px;" src="images/cylinder.png"  />
+<img id="1-10e" style="position:absolute; left:82.5px; top:337.5px; visibility:hidden;" src="images/water2.png"  />
+
+<div id="1-5" style="position:absolute; left:545px; top:310px; background-color:#F2F2F2; width:75px; height:120px;" ></div>
+<img id="1-2" style="position:absolute; left:547px; top:200px; visibility:hidden;" src="images/handcap.png"  />
+<img id="1-1" style="position:absolute; left:567px; top:246px; cursor:pointer;" src="images/bodcap.png"  />
+<img id="1-7" style="position:absolute; left:626px; top:388px; cursor:pointer; visibility:hidden;" src="images/bodcap.png"  />
+<img id="1-4" style="position:absolute; left:544px; top:260px; cursor:pointer;" src="images/bottle.png"  />
+<div id="1-6" style="position:absolute; left:555px; top:345px; background-color:white; border:1px solid black; font-size:12px; padding:5px; cursor:pointer;" >&nbsp;Water<br>sample</div>
+<img id="1-3" style="position:absolute; left:547px; top:170px; visibility:hidden;" src="images/handcap.png"  />
+<img id="1-8" style="position:absolute; left:544px; top:260px; visibility:hidden;" src="images/bottle2.png"  />
+<img id="1-11" style="position:absolute; left:390px; top:70px; visibility:hidden;" src="images/bottle1.png"  />
+
+<div id="1-14" style="position:absolute; left:50px; top:424px; background-color:#F2F2F2; width:72px; height:80px;" ></div>
+<div id="1-13" style="position:absolute; left:50px; top:424px; background-color:#FFFFFF; width:77px; height:80px;" ></div>
+<img id="1-12" style="position:absolute; left:50px; top:350px; display:none;" src="images/beaker11.png"  />
+<img id="1-15" style="position:absolute; left:50px; top:350px; visibility:hidden;" src="images/beakers.png"  />
+
+</div>
+
+<div class="simsubscreen" id="canvas2" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;2&nbsp;</span>
+<p class="steptext">&nbsp;Add different dosages of Alum solution to the six beakers with one as blank.</p>
+
+<div id="2-96" style="position:absolute; left:575px; top:340px; background-color:#F2F2F2; width:7.5px; height:95px; visibility:hidden;" ></div>
+<img id="2-91" style="position:absolute; left:563.5px; top:40px; display:none;" src="images/graduatedPipette.png"  />
+<img id="2-92" style="position:absolute; left:560px; top:40px; visibility:hidden;" src="images/gp2.png"  />
+<img id="2-97" style="position:absolute; left:560px; top:140px; visibility:hidden;" src="images/gp3.png"  />
+<img id="2-93" style="position:absolute; left:250px; top:100px; visibility:hidden;" src="images/bulb.png"  />
+<img id="2-94" style="position:absolute; left:302px; top:208px; cursor:pointer; visibility:hidden;" src="images/uparrow.png"  />
+<img id="2-95" style="position:absolute; left:314px; top:220px; transform:rotate(180deg); cursor:pointer; visibility:hidden;" src="images/uparrow.png"  />
+<div id="drop2-1" style="position:absolute; width:8px; height:9px; border-radius:50%; border-top-right-radius:0; border:1px solid black; transform:rotate(-45deg); background-color: #F2F2F2; visibility:hidden;"></div>
+<div id="drop2-2" style="position:absolute; width:8px; height:9px; border-radius:50%; border-top-right-radius:0; border:1px solid black; transform:rotate(-45deg);  background-color: #F2F2F2; visibility:hidden;"></div>
+<div id="drop2-3" style="position:absolute; width:8px; height:9px; border-radius:50%; border-top-right-radius:0; border:1px solid black; transform:rotate(-45deg);  background-color: #F2F2F2; visibility:hidden;"></div>
+<div id="drop2-4" style="position:absolute; width:8px; height:9px; border-radius:50%; border-top-right-radius:0; border:1px solid black; transform:rotate(-45deg);  background-color: #F2F2F2; visibility:hidden;"></div>
+<div id="drop2-5" style="position:absolute; width:8px; height:9px; border-radius:50%; border-top-right-radius:0; border:1px solid black; transform:rotate(-45deg);  background-color: #F2F2F2; visibility:hidden;"></div>
+
+<div id="2-11" style="position:absolute; left:25px; top:384px; background-color:#F2F2F2; width:62px; height:29px; " ></div>
+<div id="2-12" style="position:absolute; left:20px; top:414px;  background-color:white; width:70px; height:50px; " ></div>
+<img id="2-13" style="position:absolute; left:20px; top:340px; " title="0ml" src="images/beaker.png" />
+
+<div id="2-21" style="position:absolute; left:105px; top:384px;  background-color:#F2F2F2; width:62px; height:30px; " ></div>
+<div id="2-22" style="position:absolute; left:100px; top:414px;  background-color:white; width:70px; height:50px; " ></div>
+<img id="2-23" style="position:absolute; left:100px; top:340px;" title="1ml" src="images/beaker.png" />
+
+<div id="2-31" style="position:absolute; left:185px; top:384px;  background-color:#F2F2F2; width:62px; height:31px; " ></div>
+<div id="2-32" style="position:absolute; left:180px; top:414px;  background-color:white; width:70px; height:50px; " ></div>
+<img id="2-33" style="position:absolute; left:180px; top:340px;" title="2ml" src="images/beaker.png" />
+
+<div id="2-41" style="position:absolute; left:265px; top:384px;  background-color:#F2F2F2; width:62px; height:32px; " ></div>
+<div id="2-42" style="position:absolute; left:260px; top:414px;  background-color:white; width:70px; height:50px; " ></div>
+<img id="2-43" style="position:absolute; left:260px; top:340px;" title="3ml" src="images/beaker.png" />
+
+<div id="2-51" style="position:absolute; left:345px; top:384px;  background-color:#F2F2F2; width:62px; height:33px; " ></div>
+<div id="2-52" style="position:absolute; left:340px; top:414px;  background-color:white; width:70px; height:50px; " ></div>
+<img id="2-53" style="position:absolute; left:340px; top:340px;" title="4ml" src="images/beaker.png" />
+
+<div id="2-61" style="position:absolute; left:425px; top:384px;  background-color:#F2F2F2; width:62px; height:34px; " ></div>
+<div id="2-62" style="position:absolute; left:420px; top:414px;  background-color:white; width:70px; height:50px; " ></div>
+<img id="2-63" style="position:absolute; left:420px; top:340px;" title="5ml" src="images/beaker.png" />
+
+<img id="2-71" style="position:absolute; left:572px; top:249px; cursor:pointer;" src="images/cap2.png" />
+<img id="2-73" style="position:absolute; left:640px; top:385px; cursor:pointer; visibility:hidden;" src="images/cap2.png" />
+
+<div id="2-81" style="position:absolute; left:550px; top:337px;  background-color:#F2F2F2; width:59px; height:80px; " ></div>
+<img id="2-82" style="position:absolute; left:550px; top:265px; " src="images/flask.png" />
+
+<img id="2-72" style="position:absolute; left:542px; top:210.5px; visibility:hidden;" src="images/hand3.png" />
+
+<p id="p2-1" style="position:absolute; left:260px; top:45px; visibility:hidden; font-size:12px; color:red;">Squeeze the pipette bulb and dip the </br></br>pipette into the Alum solution</p>
+<p id="p2-2" style="position:absolute; left:20px; top:150px; visibility:hidden; font-size:12px; color:red;">Press the up arrow on the bulb </br></br>to take the liquid up into the pipette </p>
+<p id="p2-4" style="position:absolute; left:300px; top:200px; visibility:hidden; font-size:12px; color:red;">Press the down arrow on the bulb </br></br>to release Alum solution</p>
+<p id="p2-3" style="position:absolute; left:40px; top:415px; font-size:14px; color:red; font-weight:bold; visibility:hidden;">0ml</p>
+<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.5ml&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1ml&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.5ml&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2ml&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.5ml</p> -->
+</div>
+
+
+
+<div class="simsubscreen" id="canvas3" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;3&nbsp;</span>
+<p class="steptext">&nbsp;Stir the mixture thoroughly at 100rpm for one minute and at 30rpm for twenty-nine minutes.</p>
+<img id="3-12" style="position:absolute; left:10px; top:140px;" src="images/stirrer2.png" />
+
+<div id="3-41" style="position:absolute; left:35px; top:288px;  background-color:#F2F2F2; width:62px; height:34px; visibility:hidden;" ></div>
+<div id="3-42" style="position:absolute; left:107.5px; top:287.50px;  background-color:#F2F2F2; width:62px; height:34px; visibility:hidden;" ></div>
+<div id="3-43" style="position:absolute; left:180px; top:287.25px;  background-color:#F2F2F2; width:62px; height:34px; visibility:hidden;" ></div>
+<div id="3-44" style="position:absolute; left:252.5px; top:287px;  background-color:#F2F2F2; width:62px; height:34px; visibility:hidden;" ></div>
+<div id="3-45" style="position:absolute; left:325px; top:286px;  background-color:#F2F2F2; width:62px; height:34px; visibility:hidden;" ></div>
+<div id="3-46" style="position:absolute; left:397.5px; top:285px;  background-color:#F2F2F2; width:62px; height:34px; visibility:hidden;" ></div>
+<div  style="position:absolute; left:30px; top:317.5px;  background-color:#FFFFFF; width:500px; height:5px; " ></div>
+
+<img id="3-31" style="position:absolute; left:47.5px; top:30px; " src="images/stirrer1.png" />
+<img id="3-32" style="position:absolute; left:121px; top:30px; " src="images/stirrer1.png" />
+<img id="3-33" style="position:absolute; left:193px; top:30px; " src="images/stirrer1.png" />
+<img id="3-34" style="position:absolute; left:266px; top:30px; " src="images/stirrer1.png" />
+<img id="3-35" style="position:absolute; left:338px; top:30px; " src="images/stirrer1.png" />
+<img id="3-36" style="position:absolute; left:411px; top:30px; " src="images/stirrer1.png" />
+<img id="3-371" style="position:absolute; left:55.70px; top:64px; cursor:pointer; " src="images/screw.png" />
+<img id="3-372" style="position:absolute; left:129.20px; top:64px; cursor:pointer; " src="images/screw.png" />
+<img id="3-373" style="position:absolute; left:201.20px; top:64px; cursor:pointer; " src="images/screw.png" />
+<img id="3-374" style="position:absolute; left:274.20px; top:64px; cursor:pointer; " src="images/screw.png" />
+<img id="3-375" style="position:absolute; left:346.20px; top:64px; cursor:pointer; " src="images/screw.png" />
+<img id="3-376" style="position:absolute; left:419.20px; top:64px; cursor:pointer; " src="images/screw.png" />
+
+<img id="3-1" style="position:absolute; left:10px; top:140px;" src="images/stirrer.png" />
+
+<img id="3-21" style="position:absolute; left:30px; top:245px; visibility:hidden;" title="0ml" src="images/beakerr.png" />
+<img id="3-22" style="position:absolute; left:102.5px; top:245px; visibility:hidden;" title="1ml" src="images/beakerr.png" />
+<img id="3-23" style="position:absolute; left:175px; top:245px; visibility:hidden;"  title="2ml" src="images/beakerr.png" />
+<img id="3-24" style="position:absolute; left:247.5px; top:245px; visibility:hidden;"  title="3ml" src="images/beakerr.png" />
+<img id="3-25" style="position:absolute; left:320px; top:245px; visibility:hidden;"  title="4ml" src="images/beakerr.png" />
+<img id="3-26" style="position:absolute; left:392.5px; top:245px; visibility:hidden;"  title="5ml" src="images/beakerr.png" />
+
+<img id="3-27" style="position:absolute; left:30px; top:245px; visibility:hidden;" title="beaker 1" src="images/beakers1.png" />
+
+<div id="container" style="position:absolute;left:22.5px; top:245px; width:80px; height:73px; visibility:hidden;" ></div>
+<img id="beaker" style="position:absolute; left:540px; top:345px; display:none; cursor:pointer;" title="beaker 1" src="images/beaker1.png"  />
+<p id="p3-4"style="position:absolute; left:500px; top:250px; font-size:14px; visibility:hidden; color:red;">Place the beaker in the appropriate positon</p>
+
+<div id="3-5" style="position:absolute; left:310px; top:331px; width:165px; height:78px; cursor:pointer;"></div>
+<img id="3-5b" style="position:absolute; left:490px; top:250px; visibility:hidden;" src="images/board.png" /><!--big board-->
+<img id="3-5s" style="position:absolute; left:310px; top:331px; visibility:hidden; " src="images/board2.png" /><!--small board-->
+<img id="3-51" style="position:absolute; left:498.5px; top:340px; cursor:pointer; visibility:hidden;" src="images/switch.png" />
+<img id="3-52" style="position:absolute; left:497px; top:310px; visibility:hidden;" src="images/power.png" />
+<img id="3-53" style="position:absolute; left:527.5px; top:302.5px; visibility:hidden;" src="images/display.png" />
+<img id="3-54" style="position:absolute; left:574.75px; top:296.51px; cursor:pointer; visibility:hidden;" src="images/set.png" />
+<img id="3-55" style="position:absolute; left:577.50px; top:312.5px; visibility:hidden;" src="images/set1.png" />
+<img id="3-56" style="position:absolute; left:574.75px; top:323.5px; cursor:pointer; visibility:hidden;" src="images/set.png" />
+<img id="3-57" style="position:absolute; left:605.25px; top:302.5px; visibility:hidden;" src="images/rpm.png" />
+<div id="3-58w" style="position:absolute; left:685px; top:319px; width:51px; height:55px; background-color:#FFFFFF; visibility:hidden;"></div>
+<img id="3-58" style="position:absolute; left:685px; top:319px; cursor:pointer; visibility:hidden; " src="images/stirr1.png" />
+
+<p id="p3-53" style="position:absolute; left:352.5px; top:350px; color:white; background-color:transparent; font-size:12px; visibility:hidden;">00</p><!--small-->
+<p id="p3-51" style="position:absolute; left:529.5px; top:292px; color:white; background-color:transparent; font-size:18px; visibility:hidden;">0 0</p>
+<p id="p3-52" style="position:absolute; left:613px; top:292px; color:white; background-color:transparent; font-size:18px; visibility:hidden;">0 0 0</p>
+<p id="p3-54" style="position:absolute; left:403.5px; top:349px; color:white; background-color:transparent; font-size:12px; visibility:hidden;">000</p>
+
+<img id="3-6" style="position:absolute; left:59px; top:110px; cursor:pointer; visibility:hidden;" src="images/screw2.png" />
+<img id="3-7" style="position:absolute; left:10px; top:437px; visibility:hidden;" src="images/beakers.png" />
+
+<div id="p3-1" style="position:absolute; left:500px; top: 220px; background-color:black; color:white; padding:7.5px; border-radius:10px; display:none; font-size:14px; text-align:justify;">
+<p id="para3-1">Keep remaining 5 beakers under the appropriate stirrer.<p>
+<input id="b3-1" type="button" style="float:right;" value="OK" >
+</div>
+</div>
+
+
+<div class="simsubscreen" id="canvas4" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;4&nbsp;</span>
+<p class="steptext">&nbsp;Take the Nephelometer tube fill it with the sample in the beaker.</p>
+<!-- solutions in beaker -->
+<div id="4-11" style="position:absolute; left:55px; top:178px;  background-color:#F2F2F2; width:62px; height:34px;" ></div>
+<div id="4-12" style="position:absolute; left:157.5px; top:177.50px;  background-color:#F2F2F2; width:62px; height:34px;" ></div>
+<div id="4-13" style="position:absolute; left:260px; top:177.25px;  background-color:#F2F2F2; width:62px; height:34px;" ></div>
+<div id="4-14" style="position:absolute; left:362.5px; top:177px;  background-color:#F2F2F2; width:62px; height:34px;" ></div>
+<div id="4-15" style="position:absolute; left:465px; top:176px;  background-color:#F2F2F2; width:62px; height:34px;" ></div>
+<div id="4-16" style="position:absolute; left:567.5px; top:175px;  background-color:#F2F2F2; width:62px; height:34px;" ></div>
+
+<div style="position:absolute; left:52px; top:209px;  background-color:#FFFFFF; width:600px; height:34px;" ></div>
+
+<img id="4-21" style="position:absolute; left:50px; top:135px; " title="0ml" src="images/beaker.png" />
+<img id="4-22" style="position:absolute; left:152.5px; top:135px; " title="1ml" src="images/beaker.png" />
+<img id="4-23" style="position:absolute; left:255px; top:135px; "  title="2ml" src="images/beaker.png" />
+<img id="4-24" style="position:absolute; left:357.5px; top:135px; "  title="3ml" src="images/beaker.png" />
+<img id="4-25" style="position:absolute; left:460px; top:135px; "  title="4ml" src="images/beaker.png" />
+<img id="4-26" style="position:absolute; left:562.5px; top:135px; "  title="5ml" src="images/beaker.png" />
+
+<img id="4-43" style="position:absolute; left:52.5px; top:340px; visibility:hidden;" src="images/water2.png" />
+<img id="4-41" style="position:absolute; left:50px; top:135px; visibility:hidden;" title="0ml" src="images/beakers1.png" />
+<img id="4-42" style="position:absolute; left:70px; top:240px; visibility:hidden;" title="0ml" src="images/beaker4.png" />
+
+<img id="4-72" style="position:absolute; left:153.75px; top:340px; visibility:hidden;" src="images/water2.png" />
+<img id="4-73" style="position:absolute; left:258.25px; top:340px; visibility:hidden;" src="images/water2.png" />
+<img id="4-74" style="position:absolute; left:360.25px; top:340px; visibility:hidden;" src="images/water2.png" />
+<img id="4-75" style="position:absolute; left:463px; top:340px; visibility:hidden;" src="images/water2.png" />
+<img id="4-76" style="position:absolute; left:564px; top:340px; visibility:hidden;" src="images/water2.png" />
+
+<img id="4-62" style="position:absolute; left:167.5px; top:280px; visibility:hidden;" title="1ml" src="images/beakers2.png" />
+<img id="4-63" style="position:absolute; left:272.5px; top:280px; visibility:hidden;" title="2ml" src="images/beakers2.png" />
+<img id="4-64" style="position:absolute; left:375px; top:280px; visibility:hidden;" title="3ml" src="images/beakers2.png" />
+<img id="4-65" style="position:absolute; left:477.5px; top:280px; visibility:hidden;" title="4ml" src="images/beakers2.png" />
+<img id="4-66" style="position:absolute; left:577.5px; top:280px; visibility:hidden;" title="5ml" src="images/beakers2.png" />
+
+<!-- nephelometer tube solutions -->
+<div id="4-31" style="position:absolute; left:53px;  top:442.5px;  background-color:#F2F2F2; width:26px; height:73.5px;" ></div>
+<div id="4-32" style="position:absolute; left:155px; top:442.5px;  background-color:#F2F2F2; width:26px; height:73.5px;" ></div>
+<div id="4-33" style="position:absolute; left:258px; top:442.5px;  background-color:#F2F2F2; width:26px; height:73.5px;" ></div>
+<div id="4-34" style="position:absolute; left:360px; top:442.5px;  background-color:#F2F2F2; width:26px; height:73.5px;" ></div>
+<div id="4-35" style="position:absolute; left:463px; top:442.5px;  background-color:#F2F2F2; width:26px; height:73.5px;" ></div>
+<div id="4-36" style="position:absolute; left:565px; top:442.5px;  background-color:#F2F2F2; width:26px; height:73.5px;" ></div>
+
+<div style="position:absolute; left:52px; top:442.5px;  background-color:#FFFFFF; width:550px; height:73.5px;" ></div>
+
+<img style="position:absolute; left:53px; top:350px; width:25px; "  title="Nephelometer tube 1" src="images/nt2.png" />
+<img style="position:absolute; left:155px; top:350px; width:25px;"  title="Nephelometer tube 2" src="images/nt2.png" />
+<img style="position:absolute; left:258px; top:350px; width:25px;"  title="Nephelometer tube 3" src="images/nt2.png" />
+<img style="position:absolute; left:360px; top:350px; width:25px;"  title="Nephelometer tube 4" src="images/nt2.png" />
+<img style="position:absolute; left:463px; top:350px; width:25px;"  title="Nephelometer tube 5" src="images/nt2.png" />
+<img style="position:absolute; left:565px; top:350px; width:25px;"  title="Nephelometer tube 6" src="images/nt2.png" />
+
+<img style="position:absolute; left:53px; top:350px; width:25px; "  title="Nephelometer tube 1" src="images/nt1.png" />
+<img style="position:absolute; left:155px; top:350px; width:25px;"  title="Nephelometer tube 2" src="images/nt1.png" />
+<img style="position:absolute; left:258px; top:350px; width:25px;"  title="Nephelometer tube 3" src="images/nt1.png" />
+<img style="position:absolute; left:360px; top:350px; width:25px;"  title="Nephelometer tube 4" src="images/nt1.png" />
+<img style="position:absolute; left:463px; top:350px; width:25px;"  title="Nephelometer tube 5" src="images/nt1.png" />
+<img style="position:absolute; left:565px; top:350px; width:25px;"  title="Nephelometer tube 6" src="images/nt1.png" />
+
+<img id="4-51" style="position:absolute; left:90px; top:422.5px; width:25px;  cursor:pointer;"  src="images/cap1.png" />
+<img id="4-52" style="position:absolute; left:195px; top:422.5px; width:25px; cursor:pointer;"  src="images/cap1.png" />
+<img id="4-53" style="position:absolute; left:298px; top:422.5px; width:25px; cursor:pointer;"  src="images/cap1.png" />
+<img id="4-54" style="position:absolute; left:400px; top:422.5px; width:25px; cursor:pointer;"  src="images/cap1.png" />
+<img id="4-55" style="position:absolute; left:503px; top:422.5px; width:25px; cursor:pointer;"  src="images/cap1.png" />
+<img id="4-56" style="position:absolute; left:605px; top:422.5px; width:25px; cursor:pointer;"  src="images/cap1.png" />
+
+<div id="p4-1" style="position:absolute; left:250px; top: 220px; background-color:black; color:white; padding:7.5px; border-radius:10px; display:none;">
+<p>Similarly fill all the Nephelometer tubes.<p>
+<input id="btn4-1" type="button" style="float:right;" value="OK" >
+</div>
+</div>
+
+<div id="canvas5" style="visibility:hidden;">
+<h1 id="5-1" style="position:absolute; left:160px; top:250px; color:grey; display:none;">Calibration of Nephelometer</h1>
+</div>
+
+<div class="simsubscreen" id="canvas6" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;7&nbsp;</span>
+<p class="steptext">&nbsp;Place the sample cell with distilled water in the Nephelometer. Set readings to zero by adjusting coarse and fine knob.</p>
+<img id="8-5" style="position:absolute; left:49px; top:212.5px; width:195px;" src="images/Nephelometer2.png" alt="nephelometer" /><!--changed-->
+<img id="8-7" style="position:absolute; left:482.5px; top:315px; visibility:hidden;" src="images/nt4.png" alt="" />
+<img id="8-8" style="position:absolute; left:203px; top:220px; cursor:pointer; visibility:hidden;" src="images/nt3.png" alt="" />
+<img id="8-1" style="position:absolute; left:49px; top:242px; width:200px;" src="images/Nephelometer.png" alt="nephelometer" /><!--changed-->
+<img id="8-2" style="position:absolute; left:196px; top:211.5px; cursor:pointer;" src="images/stopper4.png" alt="" />
+<img id="8-16" style="position:absolute; left:198.5px; top:202.25px; cursor:pointer; visibility:hidden;" src="images/stopper1.png" alt="" /><!--changed-->
+<img id="8-9" style="position:absolute; left:196px; top:211.5px; cursor:pointer; visibility:hidden;" src="images/stopper4.png" alt="" />
+<img id="8-3" style="position:absolute; left:180px; top:170px; cursor:pointer; visibility:hidden;" src="images/stopper3.png" alt="" />
+<img id="8-4" style="position:absolute; left:315px; top:403px; cursor:pointer; visibility:hidden;" src="images/stopper1.png" alt="" />
+<img id="8-17" style="position:absolute; left:315px; top:403px; cursor:pointer; visibility:hidden;" src="images/stopper1.png" alt="" />
+<!-- nephelometer tube -->
+<img id="8-6" style="position:absolute; left:505px; top:352.5px; cursor:pointer; " src="images/nt3.png" alt="" />
+<img id="8-18" style="position:absolute; left:505px; top:352.5px; cursor:pointer; visibility:hidden;" src="images/nt3.png" alt="" />
+<!-- knobs -->
+<img id="8-10" style="position:absolute; left:100px; top:380px; cursor:pointer; " src="images/powerButtonOff.png" alt="" /><!--changed-->
+<img id="8-19" style="position:absolute; left:100px; top:380px; cursor:pointer; transform:rotate(180deg); visibility:hidden;" src="images/powerButtonOff.png" alt="" /><!--changed-->
+<div id="8-11" style="position:absolute; left:90px; top:313px; background-color:lightgrey; width:57.5px; height:12.5px; visibility:hidden;"></div><!--changed-->
+<p id="8-12" style="position:absolute; left:110px; top:296px; background-color:transparent; color:red; visibility:hidden; font-family:'Agency FB'; font-size:14px; font-weight:bold;">&nbsp;&nbsp;&nbsp;0.000</p><!--changed-->
+<img id="8-13" style="position:absolute; left:211.5px; top:377.5px; cursor:pointer;" src="images/fine.png" /><!--changed-->
+<img id="8-14" style="position:absolute; left:206px; top:362.5px; visibility:hidden;" src="images/hand.png" /><!--changed-->
+<img id="8-15" style="position:absolute; left:207px; top:367.5px; visibility:hidden;" src="images/hand2.png" /><!--changed-->
+</div>
+
+<div class="simsubscreen" id="canvas7" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;8&nbsp;</span>
+<p class="steptext">&nbsp;Now place 100 NTU calibration standard in the sample holder of Nephelometer. Adjust the calibrate knob to set the readings to 100.</p>
+<img id="9-5" style="position:absolute; left:49px; top:212.5px; width:195px;" src="images/Nephelometer2.png" alt="nephelometer" />
+<img id="9-7" style="position:absolute; left:482.5px; top:315px; visibility:hidden;" src="images/nt4.png" alt="" />
+<img id="9-8" style="position:absolute; left:203px; top:220px; cursor:pointer; visibility:hidden;" src="images/nt3.png" alt="" />
+<img id="9-1" style="position:absolute; left:49px; top:242px; width:200px;" src="images/Nephelometer.png" alt="nephelometer" />
+<img id="9-2" style="position:absolute; left:196px; top:211.5px; cursor:pointer;" src="images/stopper4.png" alt="" />
+<img id="9-16" style="position:absolute;  left:198.5px; top:202.25px;  cursor:pointer; visibility:hidden;" src="images/stopper1.png" alt="" />
+<img id="9-9" style="position:absolute; left:196px; top:211.5px; cursor:pointer; visibility:hidden;" src="images/stopper4.png" alt="" />
+<img id="9-3" style="position:absolute; left:180px; top:170px; cursor:pointer; visibility:hidden;" src="images/stopper3.png" alt="" />
+<img id="9-4" style="position:absolute; left:315px; top:403px; cursor:pointer; visibility:hidden;" src="images/stopper1.png" alt="" />
+<img id="9-17" style="position:absolute; left:315px; top:403px; cursor:pointer; visibility:hidden;" src="images/stopper1.png" alt="" />
+<!-- nephelometer tube -->
+<img id="9-6" style="position:absolute; left:505px; top:352.5px; cursor:pointer; " src="images/nt3.png" alt="" />
+<img id="9-18" style="position:absolute; left:505px; top:352.5px; cursor:pointer; visibility:hidden;" src="images/nt3.png" alt="" />
+<!-- knobs -->
+<img id="9-19" style="position:absolute; left:100px; top:380px; cursor:pointer; transform:rotate(180deg);" src="images/powerButtonOff.png" alt="" />
+
+<div id="9-11" style="position:absolute; left:90px; top:313px; background-color:lightgrey; width:57.5px; height:12.5px;"></div>
+<p id="9-12" style="position:absolute; left:110px; top:296px; background-color:transparent; color:red; font-family:'Agency FB'; font-size:14px; font-weight:bold;">&nbsp;&nbsp;&nbsp;0.000</p>
+<img id="9-13" style="position:absolute; left:213px; top:307px; cursor:pointer;" src="images/calib.png" />
+<img id="9-14" style="position:absolute; left:207.5px; top:291px; visibility:hidden;" src="images/hand.png" />
+<img id="9-15" style="position:absolute; left:210px; top:296px; visibility:hidden;" src="images/hand2.png" />
+</div>
+
+<div id="canvas8" style="visibility:hidden;">
+<h1 id="p9-1" style="position:absolute; left:85px; top:250px; color:grey; display:none;" >Measurement of Turbidity of Samples</h1>
+</div>
+
+<div class="simsubscreen" id="canvas9" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;9&nbsp;</span>
+<p class="steptext">&nbsp;Measure the Turbidity of samples by placing sample tube in the Nephelometer.</p>
+<img id="10-5" style="position:absolute; left:49px; top:212.5px; width:195px;" src="images/Nephelometer2.png" alt="nephelometer" />
+<img id="10-7" style="position:absolute; left:482.5px; top:315px; visibility:hidden;" src="images/nt4.png" alt="" />
+<img id="10-8" style="position:absolute; left:203px; top:220px; cursor:pointer; visibility:hidden;" src="images/nt3.png" alt="" />
+<img id="10-1" style="position:absolute; left:49px; top:242px; width:200px;" src="images/Nephelometer.png" alt="nephelometer" />
+<img id="10-2" style="position:absolute; left:196px; top:211.5px; cursor:pointer;" src="images/stopper4.png" alt="" />
+<img id="10-16" style="position:absolute; left:198.5px; top:202.25px; cursor:pointer; visibility:hidden;" src="images/stopper1.png" alt="" />
+<img id="10-9" style="position:absolute; left:196px; top:211.5px; cursor:pointer; visibility:hidden;" src="images/stopper4.png" alt="" />
+<img id="10-3" style="position:absolute; left:180px; top:170px; cursor:pointer; visibility:hidden;" src="images/stopper3.png" alt="" />
+<img id="10-4" style="position:absolute; left:315px; top:403px; cursor:pointer; visibility:hidden;" src="images/stopper1.png" alt="" />
+<img id="10-17" style="position:absolute; left:315px; top:403px; cursor:pointer; visibility:hidden;" src="images/stopper1.png" alt="" />
+<!-- nephelometer tube -->
+<img id="10-6" style="position:absolute; left:505px; top:352.5px; cursor:pointer; " src="images/nt3.png" alt="" />
+<img id="10-18" style="position:absolute; left:505px; top:352.5px; cursor:pointer; visibility:hidden;" src="images/nt3.png" alt="" />
+<!-- knobs -->
+<img id="10-19" style="position:absolute; left:100px; top:380px; cursor:pointer; transform:rotate(180deg);" src="images/powerButtonOff.png" alt="" />
+
+<div id="10-11" style="position:absolute; left:90px; top:313px; background-color:lightgrey; width:57.5px; height:12.5px; "></div>
+<p id="10-12" style="position:absolute; left:110px; top:296px; background-color:transparent; color:red; font-family:'Agency FB'; font-size:14px; font-weight:bold;">&nbsp;&nbsp;&nbsp;0.000</p>
+
+<img id="10-20" style="position:absolute; left:280px; top:350px; visibility:hidden;" title="0ml" src="images/nt3.png" alt="" />
+<img id="10-21" style="position:absolute; left:340px; top:350px; visibility:hidden;" title="1ml" src="images/nt3.png" alt="" />
+<img id="10-22" style="position:absolute; left:400px; top:350px; visibility:hidden;" title="2ml" src="images/nt3.png" alt="" />
+<img id="10-23" style="position:absolute; left:460px; top:350px; visibility:hidden;" title="3ml" src="images/nt3.png" alt="" />
+<img id="10-24" style="position:absolute; left:520px; top:350px; visibility:hidden;" title="4ml" src="images/nt3.png" alt="" />
+<img id="10-25" style="position:absolute; left:580px; top:350px; visibility:hidden;" title="5ml" src="images/nt3.png" alt="" />
+
+<p id="p10-30" style="position:absolute; left:280px; top:442.5px; visibility:hidden; font-size:12px;" ></p>
+<p id="p10-31" style="position:absolute; left:340px; top:442.5px; visibility:hidden; font-size:12px;" ></p>
+<p id="p10-32" style="position:absolute; left:400px; top:442.5px; visibility:hidden; font-size:12px;" ></p>
+<p id="p10-33" style="position:absolute; left:460px; top:442.5px; visibility:hidden; font-size:12px;" ></p>
+<p id="p10-34" style="position:absolute; left:520px; top:442.5px; visibility:hidden; font-size:12px;" ></p>
+<p id="p10-35" style="position:absolute; left:580px; top:442.5px; visibility:hidden; font-size:12px;" ></p>
+</div>
+
+
+<div class="simsubscreennum" id="canvas10" style="visibility:hidden">
+<h2 style="position:absolute; left:50px; top:75px;">Observations : </h2>
+<table id="tab" style="position:absolute; left:50px; top:150px; border:1px solid black;">
+<tr>
+<td>Sample no.</td>
+<td>Volume of Alum </br>solution added (ml)</td>
+<td>Alum Dosage (mg/l)</td>
+<td>Turbidity (NTU)</td>
+</tr>
+<tr>
+<td id="r0-1"></td>
+<td id="r0-2"></td>
+<td id="r0-3"><input type="text" style="width:50px;" /></td>
+<td id="r0-4"></td>
+</tr>
+<tr>
+<td id="r1-1"></td>
+<td id="r1-2"></td>
+<td id="r1-3"><input type="text" style="width:50px;" /></td>
+<td id="r1-4"></td>
+</tr>
+<tr>
+<td id="r2-1"></td>
+<td id="r2-2"></td>
+<td id="r2-3"><input type="text" style="width:50px;" /></td>
+<td id="r2-4"></td>
+</tr>
+<tr>
+<td id="r3-1"></td>
+<td id="r3-2"></td>
+<td id="r3-3"><input type="text" style="width:50px;" /></td>
+<td id="r3-4"></td>
+</tr>
+<tr>
+<td id="r4-1"></td>
+<td id="r4-2"></td>
+<td id="r4-3"><input type="text" style="width:50px;" /></td>
+<td id="r4-4"></td>
+</tr>
+<tr>
+<td id="r5-1"></td>
+<td id="r5-2"></td>
+<td id="r5-3"><input type="text" style="width:50px;" /></td>
+<td id="r5-4"></td>
+</tr>
+</table>
+<input id="hint" type="button" value="HINT" style="position:absolute; left:50px; top:500px;" onclick='document.getElementById("p11").style.visibility="visible"'/>
+<input id="result" type="button" value="RESULT" style="position:absolute; left:120px; top:500px;" /></br>
+<p id="p11" style="visibility:hidden; position:absolute; left:50px; top:520px;">1ml of Alum solution => 10mg of Alum per litre</p>
+</div>
+
+<div class="simsubscreennum" id="canvas11" style="visibility:hidden">
+<h2 style="position:absolute; left:250px; top:25px;">Characteristic Curves</h2>
+<p id="g" style="position:absolute; left:280px; top:60px; border:1px solid black; cursor:pointer; padding:2.5px;">Turbidity v/s Alum dosage</p>
+<div id="chartContainer" style="height: 400px; width: 620px; margin-left:80px; margin-right:100px; margin-top:50px; visibility:hidden;"></div>
+<div style="height: 20px; width: 150px; left:50px; top:495px; position:absolute; background-color:white;"></div>
+<div style="height: 20px; width: 250px; left:500px; top:495px; position:absolute; background-color:white;"></div>
+
+<div id="q11" style="position:absolute; left:80px; top:500px; height:60px; width:640px; font-size:14px; visibility:hidden;">
+<p>Optimum alum dosage = <input id="wa" type="text" style="border:none; border-bottom:2px solid #ea3f49; width:65px;"/>mg/l</p>
+<!-- <p>Chlorine demand for water sample = <input id="tw" type="text" style="border:none; border-bottom:2px solid #ea3f49; width:65px; "/>mg/l&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<input id="check1" type="button" name="Check" value="Check" />&nbsp;&nbsp;&nbsp;<input id="result1" type="button" name="RESULT" value="Result"  style="visibility:hidden;"/></p>
+<p id="r1" style="position:absolute; left:360px; top:-15px; color:#32CD32; font-size:22px; visibility:hidden;" >&#10004;</p>
+<!-- <p id="r2" style="position:absolute; left:357.5px; top:20px; color:#32CD32; font-size:22px; visibility:hidden;" >&#10004;</p> -->
+<p id="w1" style="position:absolute; left:360px; top:-15px; color:red; font-size:22px; visibility:hidden;"  >&#10008;</p>
+<!-- <p id="w2" style="position:absolute; left:357.5px; top:20px; color:red; font-size:22px; visibility:hidden;"  >&#10008;</p> -->
+</div>
+</div>
+
+<div id="canvas12" class="simsubscreen" style="visibility:hidden;">
+<strong class="incanvas" id="ob"><h3>Inference: </h3></strong>
+<div id="inference" style="position:absolute; left:100px; top:100px; font-size:14px; background-color:grey; color:white; padding:7.5px; border-radius:5px;">
+<p id="q1">What is the optimum quantity of Alum required for the given sample with Turbidity?</p>
+<input type="radio" name="inf" value="1"><label id="a1"></label></br>
+<input type="radio" name="inf" value="2"><label id="a2"></label></br>
+<input type="radio" name="inf" value="3"><label id="a3"></label></br>
+<input type="radio" name="inf" value="4"><label id="a4"></label></br></br>
+<input type="button" value="Submit" onclick="checkInference();"/>
+<p id="ans" style="visibility:hidden;"></p>
+</div>
+<p id="infAns" style="display:none; font-weight:bold; text-align:justify; font-size:15px; width:700px;"></p>
+</div>
+
+<div id="questDiv" style="position:absolute; font-size:14px; background-color:grey; color:white; padding:7.5px; border-radius:5px; visibility:hidden;">
+<p id="q"></p><select id="answer" >
+</select>
+<p id="a"></p>
+</div>
+
+<div id="">
+<p id="titration" style="text-transform: uppercase;visibility :hidden;font-weight: bold;font-family:verdana; font-size:14px;"><strong>Titration = </strong></p>
+</div>
+
+<div id="popups1"  style="visibility:hidden;">
+<p>Repeat the same
+	<span class="tooltip" style="border-bottom:1px dotted ; color:red;">procedure
+		<span  class="tooltiptext" style="text-align:justify;">1. Take a measuring cylinder<br/>2. Fill it upto 500ml with given water sample<br/>3. Take a 1000ml beaker</br>4. Pour 500ml of water sample taken into the beaker</span></span> for remaining 5 beakers</p>
+		<input type="button" value="OK" onclick="display();" style="float:right;">
+</div>
+
+<div id="db" style="display:none; ">
+<dialog open style="position:absolute; left:350px; top:200px; background-color:black; color:white; padding:5px; border-radius:3.5px; border:1px solid black;">
+<p>Similarly measure the Turbidity of remaining samples.</p>
+<input type="button" value="OK" style="float:right;" onclick="dispTurb()" />
+</dialog>
+</div>
+
+<!-- popups 2-->
+<div id="popups2" class="popup" style="visibility:hidden;">
+<p id="msg"></p>
+</div>
+
+<!-- nextButton -->
+<div id="nav">
+<img id="nextButton" onclick="navNext()" src="images/Next.png" />
+</div>
+
+<!--Blinking Arrow	-->
+<img class ="" id="arrow1" style="visibility:hidden;" src="images/arrow1.png"/>
+
+<div id="copyright"> &copy; 2018 - <script>document.write(new Date().getFullYear())</script> SOLVE - The Virtual Lab @ NITK Surathkal, Department of Water Resources & Ocean Engineering</div>
+</div>
 </body>
 </html>
