@@ -1,0 +1,346 @@
+﻿html
+{
+    -moz-user-select     : none;
+    -khtml-user-select   : none;
+    -webkit-user-select  : none;
+    -o-user-select       : none;
+    user-select          : none;
+}
+#simscreen
+{
+	position: relative;
+	left:0px;
+	top:0px;
+	height: 600px; 
+	width:800px;
+	border:solid 1px;
+}
+
+#title{
+	position:relative;
+	left: 0px;
+	top: 0px;
+	height:40px;
+	font-size: 24px;
+	text-align:center;
+	background-color: black;
+	font-family: verdana;
+	color: White;
+	text-transform: uppercase; 
+}
+
+#title h3
+{
+	padding-top:2px;
+	margin:0px;
+}	
+
+.simsubscreen
+{
+	position:absolute;
+	left:50px;
+	top:50px;
+	height:530px;
+	width:745px;
+}
+
+.incanvas
+{
+	margin:5px 0 0 5px;
+	padding:0;
+}
+
+#nextButton
+{
+	position:absolute;
+	left:750px;
+	top:530px;
+	cursor:pointer;
+}
+
+.circlebg
+{
+	border-radius:100%;
+	font-size:25px;
+	color:#fff;
+	text-align:center;
+	background:#000
+}
+
+.steptext
+{
+	display:inline;
+	font-size:14px;
+}
+
+#copyright{
+	position: absolute;
+	left:60px;
+	top: 580px;
+	font-size:12px
+}
+
+
+/* canvas1 move beaker */
+@-webkit-keyframes moveBeaker1
+{
+	0% {left:450px; top:347px;}
+	100% {left:115px; top:240px;}
+}
+
+@keyframes moveBeaker1
+{
+	0% {left:450px; top:347px;}
+	100% {left:115px; top:240px;}
+}
+
+/* canvas1 move spatula*/
+@-webkit-keyframes moveSpatula1
+{
+	from {left:500px; top:200px;}
+	to{left:480px; top:300px;}
+}
+
+@keyframes moveSpatula1
+{
+	from {left:500px; top:200px;}
+	to{left:480px; top:300px;}
+}
+
+/* canvas1 move spatula*/
+@-webkit-keyframes moveSpatula2
+{
+	from {left:480px; top:300px;}
+	to{left:440px; top:296px;}
+}
+
+@keyframes moveSpatula2
+{
+	from {left:480px; top:300px;}
+	to{left:440px; top:296px;}
+}
+
+
+@-webkit-keyframes moveSpatula3
+{
+	from {left:440px; top:296px;}
+	to{left:145px; top:165px;}
+}
+
+@keyframes moveSpatula3
+{
+	from {left:440px; top:296px;}
+	to{left:145px; top:165px;}
+}
+
+@-webkit-keyframes rotSpatula1
+{
+	0%{transform:rotate(0deg);}
+	100%{transform:rotate(-35deg);} 
+}
+
+@keyframes rotSpatula1
+{
+	0%{transform:rotate(0deg);}
+	100%{transform:rotate(-35deg);} 
+}
+
+@-webkit-keyframes fallKI
+{
+	from {left:153px; top:240px;}
+	to{left:153px; top:305px;}
+}
+@keyframes fallKI 
+{
+	from {left:153px; top:240px;}
+	to{left:153px; top:305px;}
+}
+
+/* canvas 2 */
+@-webkit-keyframes stirring 
+{
+	0% {left:185px; top:215px;}
+	50% {left:145px; top:215px;}
+	100% {left:185px; top:215px;}
+}
+@keyframes stirring 
+{
+	0% {left:185px; top:215px;}
+	50% {left:145px; top:215px;}
+	100% {left:185px; top:215px;}
+}
+
+@-webkit-keyframes name1
+{
+	from {left:400px; top:200px;}
+	to{left:150px; top:330px;}
+}
+@keyframes name1 
+{
+	from {left:400px; top:200px;}
+	to{left:150px; top:330px;}
+}
+
+@-webkit-keyframes rotateBeaker
+{
+	0% {transform:rotate(0deg);}
+	100% {transform:rotate(-90deg)};
+}
+@keyframes rotateBeaker
+{
+	0% {transform:rotate(0deg);}
+	100% {transform:rotate(-90deg)};
+}
+
+@-webkit-keyframes rotateBeaker1
+{
+	0% {transform:rotate(0deg);}
+	100% {transform:rotate(90deg)};
+}
+@keyframes rotateBeaker1
+{
+	0% {transform:rotate(0deg);}
+	100% {transform:rotate(90deg)};
+}
+
+@-webkit-keyframes drop1 {
+  0% {
+    transform: scale3d(0.01,0.01,0.01) translateY(0) rotate(-45deg)
+  }
+  10% {
+    transform: scale3d(1,1,1) rotate(-45deg)
+  }
+  44% {
+    transform: scale3d(1,1,1) translateY(60px) rotate(-45deg)
+  }
+  100% {
+    transform: scale3d(1,1,1) translateY(60px) rotate(-45deg)
+  }
+}
+@keyframes drop1 {
+  0% {
+    transform: scale3d(0.01,0.01,0.01) translateY(0) rotate(-45deg)
+  }
+  10% {
+    transform: scale3d(1,1,1) rotate(-45deg)
+  }
+  44% {
+    transform: scale3d(1,1,1) translateY(60px) rotate(-45deg)
+  }
+  100% {
+    transform: scale3d(1,1,1) translateY(60px) rotate(-45deg)
+  }
+}
+
+
+@webkit-keyframes removeBodCap1
+{
+	from {left:547px; top:200px;}
+	to {left:547px; top:170px;}
+}
+
+@keyframes removeBodCap1
+{
+	from {left:547px; top:200px;}
+	to {left:547px; top:170px;}
+}
+
+/* To remove Cap */
+@webkit-keyframes removeBodCap2
+{
+	from {left:547px; top:170px;}
+	to {left:605px; top:340px;}
+}
+
+@keyframes removeBodCap2
+{
+	from {left:547px; top:170px;}
+	to {left:605px; top:340px;}
+}
+
+@webkit-keyframes addWaterSample
+{
+	from {left:330px; top:255px;}
+	to {left:330px; top:70px;}
+}
+
+@keyframes addWaterSample
+{
+	from {left:330px; top:255px;}
+	to {left:330px; top:70px;}
+}
+
+@webkit-keyframes moveSample1
+{
+	from {left:390px; top:70px;}
+	to {left:544px; top:260px;}
+}
+
+@keyframes moveSample1
+{
+	from {left:390px; top:70px;}
+	to {left:544px; top:260px;}
+}
+
+@webkit-keyframes insertBodCap2
+{
+	from {left:605px; top:340px;}
+	to {left:547px; top:170px;}
+}
+
+@keyframes insertBodCap2
+{
+	from {left:605px; top:340px;}
+	to {left:547px; top:170px;}
+}
+
+@webkit-keyframes insertBodCap1
+{
+	from {left:547px; top:170px;}
+	to {left:547px; top:200px;}
+}
+
+@keyframes insertBodCap1
+{
+	from {left:547px; top:170px;}
+	to {left:547px; top:200px;}
+}
+
+
+@-webkit-keyframes rotateStirrer {
+    from { -webkit-transform: rotateY(0deg);}
+    to   { -webkit-transform: rotateY(-16000deg); }
+  }
+
+  /* all other browsers */
+  @keyframes rotateStirrer {
+    from {
+      -moz-transform: rotateY(0deg);
+      -ms-transform: rotateY(0deg);
+      transform: rotateY(0deg);
+    }
+    to {
+      -moz-transform: rotateY(-16000deg);
+      -ms-transform: rotateY(-16000deg);
+      transform: rotateY(-16000deg);
+    }
+  }
+  
+  @-webkit-keyframes rotateStirrer1 {
+    from { -webkit-transform: rotateY(0deg);}
+    to   { -webkit-transform: rotateY(16000deg); }
+  }
+
+  /* all other browsers */
+  @keyframes rotateStirrer1 {
+    from {
+      -moz-transform: rotateY(0deg);
+      -ms-transform: rotateY(0deg);
+      transform: rotateY(0deg);
+    }
+    to {
+      -moz-transform: rotateY(16000deg);
+      -ms-transform: rotateY(16000deg);
+      transform: rotateY(16000deg);
+    }
+  }
