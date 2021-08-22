@@ -26,12 +26,13 @@ var t=	[[54.1,18.3,3.8,3.9,8.7,13.3],
 var p=Math.floor(Math.random()*(9));//to genearte randon numbers
 
 var ca;
-var questions=["Nephelometer has to be calibrated inorder to eliminate or reduce </br>the bias in it's readings over a range for all continuous values.",				"What is the chemical formula of Alum used?",
+var questions=["Nephelometer has to be calibrated inorder to eliminate or reduce </br>the bias in it's readings over a range for all continuous values.",				
+				"What is the chemical formula of Alum used?",
 			   "Coagulation is a slow mixing technique which promotes agglomeration </br>and helps the particles to settle down.",
 			   "Unit of Turbidity is NTU where NTU stands for"];
 var options2=[["True","False"],//true
 			  ["XAl(SO<sub>4</sub>)<sub>2</sub>12H<sub>2</sub>O","NaAl(SO<sub>4</sub>)12H<sub>2</sub>O","Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub>18H<sub>2</sub>O","None of the above"],//Al<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub>18H<sub>2</sub>O
-			  ["True","False"],
+			  ["True","False"],//true
 			  ["Neogenic Turbidity Units","Neophenometeric Turbidity Units","Nephelometric Turbidity Units","Nefermetic Turbidity Units"]];//Nephelometric Turbidity Units
 
 function validateAnswer(qn,ans,left,top)
@@ -360,6 +361,7 @@ function magic()
 			document.getElementById("3-3"+i).style.visibility="hidden";
 			document.getElementById("3-37"+i).style.visibility="hidden";
 		}
+		document.getElementById("para3-2").style.visibility="hidden";
 		document.getElementById("3-5b").style.visibility="hidden";
 		document.getElementById("3-5s").style.visibility="hidden";
 		document.getElementById("3-7").style.visibility="hidden";
@@ -677,7 +679,7 @@ function magic()
 			zoomType: "xy",
 		 
 			 axisX: {
-				title:"Alum dosage (mg/l)",
+				title:"Optimum alum dosage (mg/l)",
 				titleFontSize:16,
 				interval: 10,
 				intervalType: "Number"
@@ -1305,8 +1307,8 @@ function setRPM1()
 											{
 												myStopFunction();
 												document.getElementById("3-54").onclick="";
-												document.getElementById("p3-51").innerHTML="2 9";
-												document.getElementById("p3-53").innerHTML="29";
+												document.getElementById("p3-51").innerHTML="2 0";
+												document.getElementById("p3-53").innerHTML="20";
 												document.getElementById("3-31").style.animation="rotateStirrer 50s forwards";
 												document.getElementById("3-32").style.animation="rotateStirrer 50s forwards";
 												document.getElementById("3-33").style.animation="rotateStirrer 50s forwards";
@@ -1376,6 +1378,7 @@ function setRPM1()
 																		document.getElementById("3-21").style.visibility="hidden";
 																		document.getElementById("3-41").style.visibility="hidden";
 																		document.getElementById("3-27").style.visibility="visible";
+																		document.getElementById("para3-2").style.visibility="visible";
 																		$("#3-27").animate({"position":"absolute","top":"440px"},850,
 																		function()
 																		{
@@ -1383,30 +1386,30 @@ function setRPM1()
 																			document.getElementById("3-371").style.visibility="visible";
 																			setTimeout(function()
 																			{
-																			if(confirm("Similarly take out remaining beakers from the stirrer"))
-																			{
-																				for(i=2;i<=6;i++)
+																				if(confirm("Similarly take out remaining beakers from the stirrer"))
 																				{
-																					$("#3-3"+i).css({"position":"absolute","top":"30px"});
-																					document.getElementById("3-2"+i).style.visibility="hidden";
-																					document.getElementById("3-4"+i).style.visibility="hidden";
-																					document.getElementById("3-37"+i).style.visibility="visible";
+																					for(i=2;i<=6;i++)
+																					{
+																						$("#3-3"+i).css({"position":"absolute","top":"30px"});
+																						document.getElementById("3-2"+i).style.visibility="hidden";
+																						document.getElementById("3-4"+i).style.visibility="hidden";
+																						document.getElementById("3-37"+i).style.visibility="visible";
+																					}
+																					document.getElementById("3-7").style.visibility="visible";
+																					document.getElementById("nextButton").style.visibility="visible";
 																				}
-																				document.getElementById("3-7").style.visibility="visible";
-																				document.getElementById("nextButton").style.visibility="visible";
-																			}
-																			else
-																			{
-																				for(i=2;i<=6;i++)
+																				else
 																				{
-																					$("#3-3"+i).css({"position":"absolute","top":"30px"});
-																					document.getElementById("3-2"+i).style.visibility="hidden";
-																					document.getElementById("3-4"+i).style.visibility="hidden";
-																					document.getElementById("3-37"+i).style.visibility="visible";
+																					for(i=2;i<=6;i++)
+																					{
+																						$("#3-3"+i).css({"position":"absolute","top":"30px"});
+																						document.getElementById("3-2"+i).style.visibility="hidden";
+																						document.getElementById("3-4"+i).style.visibility="hidden";
+																						document.getElementById("3-37"+i).style.visibility="visible";
+																					}
+																					document.getElementById("3-7").style.visibility="visible";
+																					document.getElementById("nextButton").style.visibility="visible";
 																				}
-																				document.getElementById("3-7").style.visibility="visible";
-																				document.getElementById("nextButton").style.visibility="visible";
-                                                                            }
 																			},250);
 																		}
 																		);
@@ -1700,7 +1703,7 @@ function dispTurb()
 		document.getElementById("p10-3"+i).innerHTML=t[p][i]+" </br>NTU";
 	}
 	//document.getElementById("nextButton").style.visibility="visible";
-	validateAnswer(2,1,"150px","100px");
+	validateAnswer(2,0,"150px","100px");
 }
 
 function checkInference()
